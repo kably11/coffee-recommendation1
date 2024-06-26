@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توصيات القهوة</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            display: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .image img {
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image">
+        <img src="FNH3g64HZ3PUkru5eEWqbGFeZfPaVTOgvwL8r6AJ.webp" alt="Abriq Logo" width="300">
+    </div>
+
+    <h1>توصيات القهوة بناءً على تفضيلاتك</h1>
+    <form id="coffeeForm">
+        <div class="question">
+            <label for="flavor">ما هي النكهة التي تفضلها في قهوتك؟</label><br>
+            <input type="radio" name="flavor" value="fruit_flower"> نكهات فاكهية مع نكهات زهرية (مثل الياسمين والخوخ)<br>
+            <input type="radio" name="flavor" value="fruit_sweet"> نكهات فاكهية مع نكهات حلوة (مثل الأناناس والعنب الأحمر)<br>
+            <input type="radio" name="flavor" value="chocolate_berry"> نكهات شوكولاتة وكاكاو مع توت وجوز<br>
+            <input type="radio" name="flavor" value="chocolate_caramel"> نكهات شوكولاتة وكراميل مع لمسة من الخوخ<br>
+        </div>
+        <div class="question">
+            <label for="caffeine">ما هو مستوى الكافيين الذي تفضله؟</label><br>
+            <input type="radio" name="caffeine" value="medium_high"> متوسط إلى عالي<br>
+            <input type="radio" name="caffeine" value="medium"> متوسط<br>
+        </div>
+        <div class="question">
+            <label for="complexity">ما هو مستوى التعقيد الذي تفضله في نكهة القهوة؟</label><br>
+            <input type="radio" name="complexity" value="rich_balanced"> نكهات غنية ومتوازنة<br>
+            <input type="radio" name="complexity" value="intense_strong"> نكهات مركزة وقوية<br>
+            <input type="radio" name="complexity" value="complex_varied"> نكهات معقدة ومتنوعة<br>
+            <input type="radio" name="complexity" value="fresh_vibrant"> نكهات طازجة وحيوية<br>
+        </div>
+        <button type="button" onclick="showRecommendation()">عرض التوصية</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        function showRecommendation() {
+            const flavor = document.querySelector('input[name="flavor"]:checked').value;
+            const caffeine = document.querySelector('input[name="caffeine"]:checked').value;
+            const complexity = document.querySelector('input[name="complexity"]:checked').value;
+            let result = document.getElementById('result');
+
+            if (flavor === 'chocolate_caramel' && caffeine === 'medium' && complexity === 'rich_balanced') {
+                result.innerHTML = '<img src="Costa_Rica_Piedra_Alta.png" alt="Costa Rica Piedra Alta"><br>يمكنك الحصول على كود خصم عند الطلب BEENA';
+            } else if (flavor === 'fruit_sweet' && caffeine === 'medium_high' && complexity === 'fresh_vibrant') {
+                result.innerHTML = '<img src="Colombia_El_Puente.png" alt="Colombia El Puente"><br>يمكنك الحصول على كود خصم عند الطلب BEENA';
+            } else if (flavor === 'fruit_flower' && caffeine === 'medium' && complexity === 'complex_varied') {
+                result.innerHTML = '<img src="Ethiopia_Hambela.png" alt="Ethiopia Hambela"><br>يمكنك الحصول على كود خصم عند الطلب BEENA';
+            } else if (flavor === 'chocolate_berry' && caffeine === 'medium_high' && complexity === 'intense_strong') {
+                result.innerHTML = '<img src="Colombia_Huila.png" alt="Colombia Huila"><br>يمكنك الحصول على كود خصم عند الطلب BEENA';
+            } else {
+                result.innerHTML = 'عذرًا، لا توجد توصيات متاحة للتفضيلات المحددة.';
+            }
+            result.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
