@@ -70,88 +70,49 @@
             <input type="radio" id="rich_texture" name="texture" value="rich"> كثيفة وغنية<br>
             <input type="radio" id="balanced_texture" name="texture" value="balanced"> متوسطة ومتوازنة<br>
         </div>
-        <div class="question">
-            <label for="acidity"><b>ما هي درجة الحموضة التي تفضلها في القهوة؟</b></label><br>
-            <input type="radio" id="low_acidity" name="acidity" value="low"> منخفضة<br>
-            <input type="radio" id="medium_acidity" name="acidity" value="medium"> متوسطة<br>
-            <input type="radio" id="high_acidity" name="acidity" value="high"> عالية<br>
-        </div>
-        <div class="question">
-            <label for="sweetness"><b>ما هو مستوى الحلاوة الذي تفضله في القهوة؟</b></label><br>
-            <input type="radio" id="no_sweetness" name="sweetness" value="no_sweetness"> غير حلوة<br>
-            <input type="radio" id="light_sweetness" name="sweetness" value="light_sweetness"> حلوة بشكل خفيف<br>
-            <input type="radio" id="very_sweet" name="sweetness" value="very_sweet"> حلوة جدًا<br>
-        </div>
     </div>
 
     <button type="button" onclick="showRecommendation()">احصل على التوصية</button>
 
-    <div id="recommendation" class="result">
-        <div id="coffeeInfo"></div>
-        <img id="coffeeImage" src="" alt="Coffee Image">
-    </div>
-
-    <div class="thank-you">
-        شكراً لك على استخدام خدمة توصيات قهوة إبريق! ☕️🌟
-    </div>
-    <div class="discount-code">
-        استخدم كود الخصم: <strong>ABRIQ10</strong> للحصول على خصم 10٪ على طلبك التالي.
-    </div>
-    <div class="store-button">
-        <a href="https://abriqbun.com" target="_blank">زيارة متجرنا</a>
+    <div class="result" id="recommendationResult">
+        <p id="resultText"></p>
+        <div class="image" id="resultImage"></div>
+        <div class="thank-you">
+            نشكركم على استخدام خدمة توصيات القهوة من إبريق! ☕️
+        </div>
+        <div class="discount-code">
+            استخدم كود الخصم ABRIQ10 للحصول على خصم قدره 10% على طلبك التالي.
+        </div>
+        <div class="store-button">
+            <a href="https://abriqbun.com" target="_blank">زيارة المتجر</a>
+        </div>
     </div>
 
     <script>
         function showRecommendation() {
-            const flavor = document.querySelector('input[name="flavor"]:checked') ? document.querySelector('input[name="flavor"]:checked').value : '';
-            const caffeine = document.querySelector('input[name="caffeine"]:checked') ? document.querySelector('input[name="caffeine"]:checked').value : '';
-            const texture = document.querySelector('input[name="texture"]:checked') ? document.querySelector('input[name="texture"]:checked').value : '';
-            const acidity = document.querySelector('input[name="acidity"]:checked') ? document.querySelector('input[name="acidity"]:checked').value : '';
-            const sweetness = document.querySelector('input[name="sweetness"]:checked') ? document.querySelector('input[name="sweetness"]:checked').value : '';
+            let flavor = document.querySelector('input[name="flavor"]:checked').value;
+            let caffeine = document.querySelector('input[name="caffeine"]:checked').value;
+            let texture = document.querySelector('input[name="texture"]:checked').value;
 
-            let scores = {
-                costa_rica: 0,
-                colombia: 0,
-                ethiopia: 0
-            };
+            let resultText = '';
+            let resultImage = '';
 
-            if (flavor === 'chocolate_caramel') scores.costa_rica += 1;
-            if (flavor === 'fruit_sweet') scores.colombia += 1;
-            if (flavor === 'fruit_floral') scores.ethiopia += 1;
-
-            if (caffeine === 'medium') {
-                scores.costa_rica += 1;
-                scores.ethiopia += 1;
-            }
-            if (caffeine === 'high') scores.colombia += 1;
-
-            if (texture === 'balanced') scores.costa_rica += 1;
-            if (texture === 'rich') scores.colombia += 1;
-            if (texture === 'smooth') scores.ethiopia += 1;
-
-            let maxScore = Math.max(scores.costa_rica, scores.colombia, scores.ethiopia);
-            let recommendation = '';
-
-            if (maxScore === scores.costa_rica) {
-                recommendation = {
-                    imageUrl: 'Costa_Rica_Piedra_Alta.png',
-                    info: 'الخصائص: نكهات شوكولاتة وكراميل مع لمسة من الخوخ، كافيين متوسط، نكهات غنية ومتوازنة.'
-                };
-            } else if (maxScore === scores.colombia) {
-                recommendation = {
-                    imageUrl: 'Colombia_El_Puente.png',
-                    info: 'الخصائص: نكهات فاكهية مع نكهات حلوة، كافيين متوسط إلى عالي، نكهات طازجة وحيوية.'
-                };
-            } else if (maxScore === scores.ethiopia) {
-                recommendation = {
-                    imageUrl: 'Ethiopia_Hambela.png',
-                    info: 'الخصائص: نكهات فاكهية مع نكهات زهرية، كافيين متوسط، نكهات معقدة ومتنوعة.'
-                };
+            if (flavor === 'chocolate_caramel' && caffeine === 'medium' && texture === 'balanced') {
+                resultText = 'توصيتنا لك هي قهوة كوستا ريكا بيدرا التا';
+                resultImage = '<img src="Costa_Rica_Piedra_Alta.png" alt="Costa Rica Piedra Alta">';
+            } else if (flavor === 'fruit_sweet' && caffeine === 'high' && texture === 'smooth') {
+                resultText = 'توصيتنا لك هي قهوة كولومبيا إل بيونتي';
+                resultImage = '<img src="Colombia_El_Puente.png" alt="Colombia El Puente">';
+            } else if (flavor === 'fruit_floral' && caffeine === 'medium' && texture === 'rich') {
+                resultText = 'توصيتنا لك هي قهوة أثيوبيا همبيلا';
+                resultImage = '<img src="Ethiopia_Hambela.png" alt="Ethiopia Hambela">';
+            } else {
+                resultText = 'لم نستطع تحديد قهوة محددة بناءً على إجاباتك، يرجى المحاولة مرة أخرى.';
             }
 
-            document.getElementById('coffeeInfo').innerText = recommendation.info;
-            document.getElementById('coffeeImage').src = recommendation.imageUrl;
-            document.getElementById('recommendation').style.display = 'block';
+            document.getElementById('resultText').innerHTML = resultText;
+            document.getElementById('resultImage').innerHTML = resultImage;
+            document.getElementById('recommendationResult').style.display = 'block';
         }
     </script>
 </body>
