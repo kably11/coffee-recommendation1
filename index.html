@@ -107,7 +107,18 @@
                 resultText = 'توصيتنا لك هي قهوة أثيوبيا همبيلا';
                 resultImage = '<img src="Ethiopia_Hambela.png" alt="Ethiopia Hambela">';
             } else {
-                resultText = 'لم نستطع تحديد قهوة محددة بناءً على إجاباتك، يرجى المحاولة مرة أخرى.';
+                if (flavor === 'chocolate_caramel') {
+                    resultText = 'توصيتنا الأقرب لك هي قهوة كوستا ريكا بيدرا التا';
+                    resultImage = '<img src="Costa_Rica_Piedra_Alta.png" alt="Costa Rica Piedra Alta">';
+                } else if (flavor === 'fruit_sweet') {
+                    resultText = 'توصيتنا الأقرب لك هي قهوة كولومبيا إل بيونتي';
+                    resultImage = '<img src="Colombia_El_Puente.png" alt="Colombia El Puente">';
+                } else if (flavor === 'fruit_floral') {
+                    resultText = 'توصيتنا الأقرب لك هي قهوة أثيوبيا همبيلا';
+                    resultImage = '<img src="Ethiopia_Hambela.png" alt="Ethiopia Hambela">';
+                } else {
+                    resultText = 'لم نستطع تحديد قهوة محددة بناءً على إجاباتك، يرجى المحاولة مرة أخرى.';
+                }
             }
 
             document.getElementById('resultText').innerHTML = resultText;
