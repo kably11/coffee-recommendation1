@@ -53,15 +53,34 @@
 
     <div class="questions">
         <div class="question">
-            <label for="fruit_flavor"><b>هل تفضل نكهات الفواكه؟</b></label><br>
-            <input type="radio" id="fruit_flavor" name="flavor" value="fruit" onclick="showRecommendation()"> نعم<br>
-            <input type="radio" id="fruit_no" name="flavor" value="no_fruit" onclick="showRecommendation()"> لا<br>
+            <label for="flavor"><b>ما هي النكهة التي تفضلها في قهوتك؟</b></label><br>
+            <input type="radio" id="fruit_floral" name="flavor" value="fruit_floral" onclick="showRecommendation()"> نكهات فاكهية مع نكهات زهرية (مثل الياسمين والخوخ)<br>
+            <input type="radio" id="fruit_sweet" name="flavor" value="fruit_sweet" onclick="showRecommendation()"> نكهات فاكهية مع نكهات حلوة (مثل الأناناس والعنب الأحمر)<br>
+            <input type="radio" id="chocolate_berry" name="flavor" value="chocolate_berry" onclick="showRecommendation()"> نكهات شوكولاتة وكاكاو مع توت وجوز<br>
+            <input type="radio" id="chocolate_caramel" name="flavor" value="chocolate_caramel" onclick="showRecommendation()"> نكهات شوكولاتة وكراميل مع لمسة من الخوخ<br>
         </div>
-
         <div class="question">
-            <label for="caffeine"><b>هل تفضل قهوة خالية من الكافيين؟</b></label><br>
-            <input type="radio" id="caffeine_yes" name="caffeine" value="yes" onclick="showRecommendation()"> نعم<br>
-            <input type="radio" id="caffeine_no" name="caffeine" value="no" onclick="showRecommendation()"> لا<br>
+            <label for="caffeine"><b>ما هو مستوى الكافيين الذي تفضله؟</b></label><br>
+            <input type="radio" id="high_caffeine" name="caffeine" value="high" onclick="showRecommendation()"> متوسط إلى عالي<br>
+            <input type="radio" id="medium_caffeine" name="caffeine" value="medium" onclick="showRecommendation()"> متوسط<br>
+        </div>
+        <div class="question">
+            <label for="texture"><b>كيف تفضل أن تكون قهوتك من حيث القوام؟</b></label><br>
+            <input type="radio" id="smooth_texture" name="texture" value="smooth" onclick="showRecommendation()"> ناعمة وسلسة<br>
+            <input type="radio" id="rich_texture" name="texture" value="rich" onclick="showRecommendation()"> كثيفة وغنية<br>
+            <input type="radio" id="balanced_texture" name="texture" value="balanced" onclick="showRecommendation()"> متوسطة ومتوازنة<br>
+        </div>
+        <div class="question">
+            <label for="acidity"><b>ما هي درجة الحموضة التي تفضلها في القهوة؟</b></label><br>
+            <input type="radio" id="low_acidity" name="acidity" value="low" onclick="showRecommendation()"> منخفضة<br>
+            <input type="radio" id="medium_acidity" name="acidity" value="medium" onclick="showRecommendation()"> متوسطة<br>
+            <input type="radio" id="high_acidity" name="acidity" value="high" onclick="showRecommendation()"> عالية<br>
+        </div>
+        <div class="question">
+            <label for="sweetness"><b>ما هو مستوى الحلاوة الذي تفضله في القهوة؟</b></label><br>
+            <input type="radio" id="no_sweetness" name="sweetness" value="no_sweetness" onclick="showRecommendation()"> غير حلوة<br>
+            <input type="radio" id="light_sweetness" name="sweetness" value="light_sweetness" onclick="showRecommendation()"> حلوة بشكل خفيف<br>
+            <input type="radio" id="very_sweet" name="sweetness" value="very_sweet" onclick="showRecommendation()"> حلوة جدًا<br>
         </div>
     </div>
 
@@ -83,14 +102,17 @@
         function showRecommendation() {
             const flavor = document.querySelector('input[name="flavor"]:checked').value;
             const caffeine = document.querySelector('input[name="caffeine"]:checked').value;
+            const texture = document.querySelector('input[name="texture"]:checked').value;
+            const acidity = document.querySelector('input[name="acidity"]:checked').value;
+            const sweetness = document.querySelector('input[name="sweetness"]:checked').value;
 
             let imageUrl = '';
 
-            if (flavor === 'fruit' && caffeine === 'no') {
+            if (flavor === 'chocolate_caramel' && caffeine === 'medium' && texture === 'balanced') {
                 imageUrl = 'Costa_Rica_Piedra_Alta.png';
-            } else if (flavor === 'fruit' && caffeine === 'yes') {
+            } else if (flavor === 'fruit_sweet' && caffeine === 'high' && texture === 'rich') {
                 imageUrl = 'Colombia_El_Puente.png';
-            } else if (flavor === 'no_fruit' && caffeine === 'no') {
+            } else if (flavor === 'fruit_floral' && caffeine === 'medium' && texture === 'smooth') {
                 imageUrl = 'Ethiopia_Hambela.png';
             } else {
                 imageUrl = 'Costa_Rica_Piedra_Alta.png'; // Default image
