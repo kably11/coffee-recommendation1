@@ -54,38 +54,41 @@
     <div class="questions">
         <div class="question">
             <label for="flavor"><b>ما هي النكهة التي تفضلها في قهوتك؟</b></label><br>
-            <input type="radio" id="fruit_floral" name="flavor" value="fruit_floral" onclick="showRecommendation()"> نكهات فاكهية مع نكهات زهرية (مثل الياسمين والخوخ)<br>
-            <input type="radio" id="fruit_sweet" name="flavor" value="fruit_sweet" onclick="showRecommendation()"> نكهات فاكهية مع نكهات حلوة (مثل الأناناس والعنب الأحمر)<br>
-            <input type="radio" id="chocolate_berry" name="flavor" value="chocolate_berry" onclick="showRecommendation()"> نكهات شوكولاتة وكاكاو مع توت وجوز<br>
-            <input type="radio" id="chocolate_caramel" name="flavor" value="chocolate_caramel" onclick="showRecommendation()"> نكهات شوكولاتة وكراميل مع لمسة من الخوخ<br>
+            <input type="radio" id="fruit_floral" name="flavor" value="fruit_floral"> نكهات فاكهية مع نكهات زهرية (مثل الياسمين والخوخ)<br>
+            <input type="radio" id="fruit_sweet" name="flavor" value="fruit_sweet"> نكهات فاكهية مع نكهات حلوة (مثل الأناناس والعنب الأحمر)<br>
+            <input type="radio" id="chocolate_berry" name="flavor" value="chocolate_berry"> نكهات شوكولاتة وكاكاو مع توت وجوز<br>
+            <input type="radio" id="chocolate_caramel" name="flavor" value="chocolate_caramel"> نكهات شوكولاتة وكراميل مع لمسة من الخوخ<br>
         </div>
         <div class="question">
             <label for="caffeine"><b>ما هو مستوى الكافيين الذي تفضله؟</b></label><br>
-            <input type="radio" id="high_caffeine" name="caffeine" value="high" onclick="showRecommendation()"> متوسط إلى عالي<br>
-            <input type="radio" id="medium_caffeine" name="caffeine" value="medium" onclick="showRecommendation()"> متوسط<br>
+            <input type="radio" id="high_caffeine" name="caffeine" value="high"> متوسط إلى عالي<br>
+            <input type="radio" id="medium_caffeine" name="caffeine" value="medium"> متوسط<br>
         </div>
         <div class="question">
             <label for="texture"><b>كيف تفضل أن تكون قهوتك من حيث القوام؟</b></label><br>
-            <input type="radio" id="smooth_texture" name="texture" value="smooth" onclick="showRecommendation()"> ناعمة وسلسة<br>
-            <input type="radio" id="rich_texture" name="texture" value="rich" onclick="showRecommendation()"> كثيفة وغنية<br>
-            <input type="radio" id="balanced_texture" name="texture" value="balanced" onclick="showRecommendation()"> متوسطة ومتوازنة<br>
+            <input type="radio" id="smooth_texture" name="texture" value="smooth"> ناعمة وسلسة<br>
+            <input type="radio" id="rich_texture" name="texture" value="rich"> كثيفة وغنية<br>
+            <input type="radio" id="balanced_texture" name="texture" value="balanced"> متوسطة ومتوازنة<br>
         </div>
         <div class="question">
             <label for="acidity"><b>ما هي درجة الحموضة التي تفضلها في القهوة؟</b></label><br>
-            <input type="radio" id="low_acidity" name="acidity" value="low" onclick="showRecommendation()"> منخفضة<br>
-            <input type="radio" id="medium_acidity" name="acidity" value="medium" onclick="showRecommendation()"> متوسطة<br>
-            <input type="radio" id="high_acidity" name="acidity" value="high" onclick="showRecommendation()"> عالية<br>
+            <input type="radio" id="low_acidity" name="acidity" value="low"> منخفضة<br>
+            <input type="radio" id="medium_acidity" name="acidity" value="medium"> متوسطة<br>
+            <input type="radio" id="high_acidity" name="acidity" value="high"> عالية<br>
         </div>
         <div class="question">
             <label for="sweetness"><b>ما هو مستوى الحلاوة الذي تفضله في القهوة؟</b></label><br>
-            <input type="radio" id="no_sweetness" name="sweetness" value="no_sweetness" onclick="showRecommendation()"> غير حلوة<br>
-            <input type="radio" id="light_sweetness" name="sweetness" value="light_sweetness" onclick="showRecommendation()"> حلوة بشكل خفيف<br>
-            <input type="radio" id="very_sweet" name="sweetness" value="very_sweet" onclick="showRecommendation()"> حلوة جدًا<br>
+            <input type="radio" id="no_sweetness" name="sweetness" value="no_sweetness"> غير حلوة<br>
+            <input type="radio" id="light_sweetness" name="sweetness" value="light_sweetness"> حلوة بشكل خفيف<br>
+            <input type="radio" id="very_sweet" name="sweetness" value="very_sweet"> حلوة جدًا<br>
         </div>
     </div>
 
+    <button type="button" onclick="showRecommendation()">احصل على التوصية</button>
+
     <div id="recommendation" class="result">
         <img id="coffeeImage" src="" alt="Coffee Image">
+        <div id="coffeeInfo"></div>
     </div>
 
     <div class="thank-you">
@@ -100,25 +103,54 @@
 
     <script>
         function showRecommendation() {
-            const flavor = document.querySelector('input[name="flavor"]:checked').value;
-            const caffeine = document.querySelector('input[name="caffeine"]:checked').value;
-            const texture = document.querySelector('input[name="texture"]:checked').value;
-            const acidity = document.querySelector('input[name="acidity"]:checked').value;
-            const sweetness = document.querySelector('input[name="sweetness"]:checked').value;
+            const flavor = document.querySelector('input[name="flavor"]:checked') ? document.querySelector('input[name="flavor"]:checked').value : '';
+            const caffeine = document.querySelector('input[name="caffeine"]:checked') ? document.querySelector('input[name="caffeine"]:checked').value : '';
+            const texture = document.querySelector('input[name="texture"]:checked') ? document.querySelector('input[name="texture"]:checked').value : '';
+            const acidity = document.querySelector('input[name="acidity"]:checked') ? document.querySelector('input[name="acidity"]:checked').value : '';
+            const sweetness = document.querySelector('input[name="sweetness"]:checked') ? document.querySelector('input[name="sweetness"]:checked').value : '';
 
-            let imageUrl = '';
+            let scores = {
+                costa_rica: 0,
+                colombia: 0,
+                ethiopia: 0
+            };
 
-            if (flavor === 'chocolate_caramel' && caffeine === 'medium' && texture === 'balanced') {
-                imageUrl = 'Costa_Rica_Piedra_Alta.png';
-            } else if (flavor === 'fruit_sweet' && caffeine === 'high' && texture === 'rich') {
-                imageUrl = 'Colombia_El_Puente.png';
-            } else if (flavor === 'fruit_floral' && caffeine === 'medium' && texture === 'smooth') {
-                imageUrl = 'Ethiopia_Hambela.png';
-            } else {
-                imageUrl = 'Costa_Rica_Piedra_Alta.png'; // Default image
+            if (flavor === 'chocolate_caramel') scores.costa_rica += 1;
+            if (flavor === 'fruit_sweet') scores.colombia += 1;
+            if (flavor === 'fruit_floral') scores.ethiopia += 1;
+
+            if (caffeine === 'medium') {
+                scores.costa_rica += 1;
+                scores.ethiopia += 1;
+            }
+            if (caffeine === 'high') scores.colombia += 1;
+
+            if (texture === 'balanced') scores.costa_rica += 1;
+            if (texture === 'rich') scores.colombia += 1;
+            if (texture === 'smooth') scores.ethiopia += 1;
+
+            let maxScore = Math.max(scores.costa_rica, scores.colombia, scores.ethiopia);
+            let recommendation = '';
+
+            if (maxScore === scores.costa_rica) {
+                recommendation = {
+                    imageUrl: 'Costa_Rica_Piedra_Alta.png',
+                    info: 'الخصائص: نكهات شوكولاتة وكراميل مع لمسة من الخوخ، كافيين متوسط، نكهات غنية ومتوازنة.'
+                };
+            } else if (maxScore === scores.colombia) {
+                recommendation = {
+                    imageUrl: 'Colombia_El_Puente.png',
+                    info: 'الخصائص: نكهات فاكهية مع نكهات حلوة، كافيين متوسط إلى عالي، نكهات طازجة وحيوية.'
+                };
+            } else if (maxScore === scores.ethiopia) {
+                recommendation = {
+                    imageUrl: 'Ethiopia_Hambela.png',
+                    info: 'الخصائص: نكهات فاكهية مع نكهات زهرية، كافيين متوسط، نكهات معقدة ومتنوعة.'
+                };
             }
 
-            document.getElementById('coffeeImage').src = imageUrl;
+            document.getElementById('coffeeImage').src = recommendation.imageUrl;
+            document.getElementById('coffeeInfo').innerText = recommendation.info;
             document.getElementById('recommendation').style.display = 'block';
         }
     </script>
