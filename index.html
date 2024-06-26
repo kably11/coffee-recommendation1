@@ -1,87 +1,104 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>توصية القهوة</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    direction: rtl;
-    text-align: right;
-    margin: 20px;
-  }
-  .question {
-    margin-bottom: 20px;
-  }
-  .result {
-    display: none;
-    font-weight: bold;
-    margin-top: 20px;
-  }
-  .image img {
-    max-width: 300px;
-    text-align: center;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abriq Coffee</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            margin: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .result {
+            display: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .image img {
+            max-width: 300px;
+            text-align: center;
+        }
+        .thank-you {
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .discount-code {
+            margin-top: 20px;
+            font-size: 16px;
+            color: green;
+        }
+        .store-button {
+            margin-top: 20px;
+        }
+        .store-button a {
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #008CBA;
+            color: white;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-<div class="image">
-  <img src="FNH3g64HZ3PUkru5eEWqbGFeZfPaVTOgvwL8r6AJ.webp" alt="Abriq Logo" width="300">
-</div>
-<h3>أجب على الأسئلة لتحصل على توصية لمحصول القهوة المناسب لك:</h3>
-<div class="questions">
-  <div class="question">
-    <label for="flavor">ما هي النكهات التي تفضلها في القهوة؟</label><br>
-    <input type="radio" name="flavor" value="fruit_flavor"> نكهات الفواكه<br>
-    <input type="radio" name="flavor" value="nut_flavor"> نكهات المكسرات<br>
-    <input type="radio" name="flavor" value="chocolate_flavor"> نكهات الشوكولاتة<br>
-  </div>
-  <div class="question">
-    <label for="caffeine">ما هي نسبة الكافيين التي تفضلها في القهوة؟</label><br>
-    <input type="radio" name="caffeine" value="low_caffeine"> منخفضة<br>
-    <input type="radio" name="caffeine" value="medium_caffeine"> متوسطة<br>
-    <input type="radio" name="caffeine" value="high_caffeine"> مرتفعة<br>
-  </div>
-  <div class="question">
-    <label for="complexity">ما مدى تعقيد النكهات التي تفضلها في القهوة؟</label><br>
-    <input type="radio" name="complexity" value="simple_flavor"> بسيطة<br>
-    <input type="radio" name="complexity" value="complex_flavor"> معقدة<br>
-  </div>
-  <button type="button" onclick="showRecommendation()">احصل على التوصية</button>
-</div>
-<div class="result" id="result">
-  <h3>توصيتنا لك:</h3>
-  <p id="recommendation"></p>
-  <img id="coffeeImage" src="" alt="Coffee Image">
-</div>
-<script>
-  function showRecommendation() {
-    var flavor = document.querySelector('input[name="flavor"]:checked').value;
-    var caffeine = document.querySelector('input[name="caffeine"]:checked').value;
-    var complexity = document.querySelector('input[name="complexity"]:checked').value;
-    
-    var recommendation = "";
-    var imageUrl = "";
+    <div class="image">
+        <img src="FNH3g64HZ3PUkru5eEWqbGFeZfPaVTOgvwL8r6AJ.webp" alt="Abriq Logo" width="300">
+    </div>
+    <h3>اختر إجاباتك للحصول على توصية القهوة المثالية لك!</h3>
 
-    if (flavor === "fruit_flavor" && caffeine === "medium_caffeine" && complexity === "simple_flavor") {
-      recommendation = "نوصي بمحصول القهوة الإثيوبية من هامبيلا.";
-      imageUrl = "Ethiopia_Hambela.png";
-    } else if (flavor === "nut_flavor" && caffeine === "high_caffeine" && complexity === "complex_flavor") {
-      recommendation = "نوصي بمحصول القهوة الكولومبية من إل بونتي.";
-      imageUrl = "Colombia_El_Puente.png";
-    } else if (flavor === "chocolate_flavor" && caffeine === "low_caffeine" && complexity === "simple_flavor") {
-      recommendation = "نوصي بمحصول القهوة الكوستاريكية من بيدرا ألتا.";
-      imageUrl = "Costa_Rica_Piedra_Alta.png";
-    } else {
-      recommendation = "نوصي بتجربة محاصيل مختلفة لاكتشاف ما يناسب ذوقك.";
-      imageUrl = "";
-    }
-    
-    document.getElementById("recommendation").innerText = recommendation;
-    document.getElementById("coffeeImage").src = imageUrl;
-    document.getElementById("result").style.display = "block";
-  }
-</script>
+    <div class="questions">
+        <div class="question">
+            <label for="fruit_flavor"><b>هل تفضل نكهات الفواكه؟</b></label><br>
+            <input type="radio" id="fruit_flavor" name="flavor" value="fruit" onclick="showRecommendation()"> نعم<br>
+            <input type="radio" id="fruit_no" name="flavor" value="no_fruit" onclick="showRecommendation()"> لا<br>
+        </div>
+
+        <div class="question">
+            <label for="caffeine"><b>هل تفضل قهوة خالية من الكافيين؟</b></label><br>
+            <input type="radio" id="caffeine_yes" name="caffeine" value="yes" onclick="showRecommendation()"> نعم<br>
+            <input type="radio" id="caffeine_no" name="caffeine" value="no" onclick="showRecommendation()"> لا<br>
+        </div>
+    </div>
+
+    <div id="recommendation" class="result">
+        <img id="coffeeImage" src="" alt="Coffee Image">
+    </div>
+
+    <div class="thank-you">
+        شكراً لك على استخدام خدمة توصيات قهوة إبريق! ☕️🌟
+    </div>
+    <div class="discount-code">
+        استخدم كود الخصم: <strong>ABRIQ10</strong> للحصول على خصم 10٪ على طلبك التالي.
+    </div>
+    <div class="store-button">
+        <a href="https://abriqbun.com" target="_blank">زيارة متجرنا</a>
+    </div>
+
+    <script>
+        function showRecommendation() {
+            const flavor = document.querySelector('input[name="flavor"]:checked').value;
+            const caffeine = document.querySelector('input[name="caffeine"]:checked').value;
+
+            let imageUrl = '';
+
+            if (flavor === 'fruit' && caffeine === 'no') {
+                imageUrl = 'Costa_Rica_Piedra_Alta.png';
+            } else if (flavor === 'fruit' && caffeine === 'yes') {
+                imageUrl = 'Colombia_El_Puente.png';
+            } else if (flavor === 'no_fruit' && caffeine === 'no') {
+                imageUrl = 'Ethiopia_Hambela.png';
+            } else {
+                imageUrl = 'Costa_Rica_Piedra_Alta.png'; // Default image
+            }
+
+            document.getElementById('coffeeImage').src = imageUrl;
+            document.getElementById('recommendation').style.display = 'block';
+        }
+    </script>
 </body>
 </html>
